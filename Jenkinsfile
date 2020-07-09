@@ -1,4 +1,3 @@
-agent { docker { image 'python:3.7.2' } }
 node {
 
     stage("Checkout repository") {
