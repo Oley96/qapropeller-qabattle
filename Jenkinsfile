@@ -8,7 +8,7 @@ node {
     stage("Install deps") {
         sh 'python3 -m venv venv'
         sh 'source venv/bin/activate'
-        sh 'pip install -r requirements.txt'
+        sh 'pip3 install -r requirements.txt'
     }
 
     stage("Run test") {
