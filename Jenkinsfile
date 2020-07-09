@@ -1,3 +1,4 @@
+agent { docker { image 'python:3.7.2' } }
 node {
 
     stage("Checkout repository") {
@@ -9,9 +10,21 @@ node {
         sh 'pip install -r requirements.txt'
     }
 
-    stage("Run test and create allure report") {
+    stage("Run test") {
         sh 'chmod +x run.sh'
         sh 'bash run.sh'
+    }
+
+    stage("Create report") {
+        script {
+            allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+            ])
+    }
     }
 
 }

@@ -50,7 +50,7 @@ def configuration(request):
 
 @pytest.fixture(scope='function', autouse=True)
 def browser_management(configuration):
-    config.base_url = 'http://localhost:8080'
+    config.base_url = 'http://localhost:8081'
     config.timeout = 10
 
     if configuration["remote"]:
