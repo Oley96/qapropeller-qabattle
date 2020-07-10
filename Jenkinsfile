@@ -13,7 +13,7 @@ node {
 
     stage("Run test") {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-            sh 'run.sh'
+            sh 'bash run.sh'
         }
     }
 
