@@ -12,7 +12,7 @@ node {
     }
 
     stage("Run test") {
-        sh 'venv/bin/pytest --remote=True --browser_ver=83.0 ./tests'
+        sh 'venv/bin/pytest --reruns 2 --remote=True --browser_ver=83.0 --alluredir=allure-results ./tests'
     }
 
     stage("Create report") {
@@ -22,7 +22,7 @@ node {
                     jdk: '',
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'target/allure-results']]
+                    results: [[path: 'allure-results']]
             ])
     }
     }
