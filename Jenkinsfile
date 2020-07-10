@@ -13,7 +13,7 @@ node {
 
     stage("Run test") {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-            sh 'venv/bin/pytest --reruns 2 --remote=True --browser_ver=83.0 --alluredir=allure-results ./tests/test_login.py'
+            sh 'run.sh'
         }
     }
 
