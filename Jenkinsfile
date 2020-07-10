@@ -12,7 +12,11 @@ node {
     }
 
     stage("Run test") {
-        sh 'venv/bin/pytest --reruns 2 --remote=True --browser_ver=83.0 --alluredir=allure-results ./tests'
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh 'venv/bin/pytest --reruns 2 --remote=True --browser_ver=83.0 --alluredir=allure-results ./tests'
+                }
+            }
     }
 
     stage("Create report") {
