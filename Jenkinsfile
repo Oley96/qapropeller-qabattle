@@ -12,10 +12,8 @@ node {
     }
 
     stage("Run test") {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'venv/bin/pytest --reruns 2 --remote=True --browser_ver=83.0 --alluredir=allure-results ./tests'
-                }
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                sh 'venv/bin/pytest --reruns 2 --remote=True --browser_ver=83.0 --alluredir=allure-results ./tests'
             }
     }
 
