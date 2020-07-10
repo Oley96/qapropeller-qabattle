@@ -6,14 +6,13 @@ node {
     }
 
     stage("Install deps") {
-        sh 'python3 -m venv venv && source venv/bin/activate'
-        sh 'pip install -r requirements.txt'
-        sh 'pytest  '
+        sh 'python3 -m venv venv'
+        sh 'venv/bin/pip install -r requirements.txt'
+
     }
 
     stage("Run test") {
-        sh 'chmod +x run.sh'
-        sh 'bash run.sh'
+        sh 'venv/bin/pytest --remote=True --browser_ver=83.0 ./tests'
     }
 
     stage("Create report") {
